@@ -1,11 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1722211594
+::res://::1722947965
 default_bus_layout.tres::AudioBusLayout::-1::1722115491::0::1::::<><>::
 default_env.tres::Environment::-1::1722115491::0::1::::<><>::
 icon.png::CompressedTexture2D::1861477386451298631::1606009720::1722115524::1::::<><>::
-main.tscn::PackedScene::42507854474252942::1722184089::0::1::::<><>::
-player.gd::GDScript::-1::1722185449::0::1::::<>CharacterBody3D<>::
-player.tscn::PackedScene::3109085452000672142::1722204946::0::1::::<><>::uid://ckook78c20wxf::::res://art/player.glb<>res://player.gd
+main.tscn::PackedScene::42507854474252942::1722213754::0::1::::<><>::uid://bkkcghyt1xhji::::res://player.tscn
+player.gd::GDScript::-1::1722213465::0::1::::<>CharacterBody3D<>::
+player.tscn::PackedScene::3109085452000672142::1722213739::0::1::::<><>::uid://ckook78c20wxf::::res://art/player.glb<>res://player.gd
 README.md::TextFile::-1::1722116161::0::1::::<><>::
 ::res://art/::1722115524
 body.material::StandardMaterial3D::-1::1605908508::0::1::::<><>::
