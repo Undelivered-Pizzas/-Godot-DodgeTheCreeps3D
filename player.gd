@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+# Emitted when the enemy was hit by a mob.
+signal hit
+
 # How fast the player moves in meters per second
 @export var speed = 14
 # The downward acceleration when in the air, in meters per second squared
@@ -29,7 +32,8 @@ func _physics_process(delta):
 		direction.z += 1
 	if Input.is_action_pressed("move_forward"):
 		direction.z -= 1
-		
+	
+	# Prevent player to be faster in diagonal with normalized()
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		# Setting the basis property will affect the rotation of the node
@@ -71,3 +75,10 @@ func _physics_process(delta):
 	# Moving the character
 	velocity = target_velocity
 	move_and_slide()
+
+func die():
+	hit.emit()
+	queue_free()
+
+func _on_mob_detector_body_entered(body):
+	die()
