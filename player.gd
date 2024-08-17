@@ -13,10 +13,9 @@ signal hit
 # meters per second.
 @export var bounce_impulse = 16
 
-
-
 # A 3D vector combining speed with direction, it'll be reused across frames
 var target_velocity = Vector3.ZERO
+
 
 func _physics_process(delta):
 	# Local variable to store the input direction
@@ -39,17 +38,21 @@ func _physics_process(delta):
 		# Setting the basis property will affect the rotation of the node
 		# Basis is a 3x3 matrix that represents XYZ axes, and determine rotation, scale and shear
 		$Pivot.basis = Basis.looking_at(direction)
-		
+		$AnimationPlayer.speed_scale = 4
+	else:
+		$AnimationPlayer.speed_scale = 1
+
 	# Ground velocity
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
-	
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		target_velocity.y = jump_impulse
+
 	# If in the air, fall towards the floor. We only apply gravity when Player is in the air.
 	# is_on_floor() built-in function checks if player is in the air in this frame
 	if not is_on_floor(): 
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		target_velocity.y = jump_impulse
 	
 	# Iterate through all collisions that occurred this frame
 	for i in range(get_slide_collision_count()):
@@ -75,6 +78,8 @@ func _physics_process(delta):
 	# Moving the character
 	velocity = target_velocity
 	move_and_slide()
+	
+	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 func die():
 	hit.emit()
